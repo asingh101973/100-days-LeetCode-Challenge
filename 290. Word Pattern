@@ -1,0 +1,25 @@
+class Solution {
+    public boolean wordPattern(String pattern, String s) {
+
+       HashMap<Character, String> map = new HashMap<>();
+       char[] alpha = pattern.toCharArray();
+       String[] words = s.split(" ");
+
+       if(words.length != pattern.length()) return false; //if length is not same 
+
+       int i = 0;
+       for(char ch : alpha){
+           if(map.containsKey(ch)){ // if key is present
+               if(!map.get(ch).equals(words[i++]))
+               return false;
+           }
+           else{
+               if(map.containsValue(words[i]))
+               return false;
+               map.put(ch, words[i++]);
+           }
+       }
+       return true;
+
+    }
+}
